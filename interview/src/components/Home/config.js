@@ -22,6 +22,6 @@ const menuItems = [
     },
 ]
 // 默认选中的菜单的key
-const defaultSelectedKeys = ['home'];
+// const defaultSelectedKeys = ['home'];
 
 export default menuItems;

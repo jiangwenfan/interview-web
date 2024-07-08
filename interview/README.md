@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# interview-web
+interview项目的`web端`和`后台管理`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+> Getting Started with Create React App
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

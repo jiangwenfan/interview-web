@@ -2,11 +2,9 @@ version: '3.4'
 
 services:
   interview:
+    # 替换为真实的生产环境镜像和tag
     image: interview
-    build:
-      context: interview
-      dockerfile: ./Dockerfile
-    container_name: interview
+    container_name: interview-web
     restart: unless-stopped
     environment:
       NODE_ENV: production

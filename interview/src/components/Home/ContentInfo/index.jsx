@@ -1,7 +1,7 @@
 import React from 'react';
-import { Breadcrumb, Layout, } from 'antd';
+import { Layout, } from 'antd';
 import PubSub from 'pubsub-js';
-import { type } from '@testing-library/user-event/dist/type';
+// import { type } from '@testing-library/user-event/dist/type';
 const { Content, } = Layout;
 
 export default class ContentInfo extends React.Component {

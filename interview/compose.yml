@@ -3,9 +3,10 @@ version: '3.4'
 services:
   interview:
     image: interview
+    container_name: interview-web
     build:
-      context: interview
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: ./Dockerfiles/Dockerfile
     environment:
       NODE_ENV: development
     ports:

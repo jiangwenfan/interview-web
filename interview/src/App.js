@@ -1,6 +1,6 @@
 import React from 'react';
-import AddQA from './components/AddQA';
-import ShowQA from "./components/ShowQA";
+// import AddQA from './components/AddQA';
+// import ShowQA from "./components/ShowQA";
 import Home from './components/Home';
 
 function App() {
