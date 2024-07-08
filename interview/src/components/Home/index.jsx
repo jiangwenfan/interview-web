@@ -5,6 +5,8 @@ import ContentInfo from './ContentInfo';
 import FooterInfo from './FooterInfo';
 
 
+
+
 export default class Home extends React.Component {
 
     render() {

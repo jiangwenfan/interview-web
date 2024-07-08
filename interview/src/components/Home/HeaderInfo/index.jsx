@@ -1,41 +1,27 @@
 import React from 'react';
 import { Layout, Menu, } from 'antd';
-import { SolutionOutlined, InfoCircleOutlined, LockOutlined } from '@ant-design/icons';
+
 import examLogo from '../../../assets/test.webp';
+import PubSub from 'pubsub-js';
+import menuItems from '../config.js'
 
 const { Header } = Layout;
 
-// 菜单项
-const menuItems = [
-    {
-        key: "home",
-        icon: <SolutionOutlined />,
-        label: "Home测试",
-    },
-    {
-        key: "about",
-        icon: <InfoCircleOutlined />,
-        label: "About",
-
-    }, {
-        key: "admin",
-        icon: <LockOutlined />,
-        label: "后台管理",
-
-    },
-]
 
 // 默认选中的菜单的key
 const defaultSelectedKeys = ['home'];
 
-// 点击菜单项的回调
-const handleClick = (e) => {
-    let item_key = e.key;
-    console.log('点击了菜单项:', item_key);
-}
+
 
 
 export default class HeaderInfo extends React.Component {
+    // 点击菜单项的回调
+    handleClick = (e) => {
+        let item_key = e.key;
+        console.log('点击了菜单项:', item_key);
+        PubSub.publish('menu-item-click', item_key);
+    }
+
     render() {
         return <Header
             style={{
@@ -58,7 +44,7 @@ export default class HeaderInfo extends React.Component {
                     flex: 1,
                     minWidth: 0,
                 }}
-                onClick={handleClick}
+                onClick={this.handleClick}
             />
         </Header>
 
