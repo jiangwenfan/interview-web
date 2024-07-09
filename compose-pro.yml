@@ -4,7 +4,7 @@ services:
   interview:
     container_name: interview-web
     # 替换为真实的生产环境镜像和tag
-    image: interview
+    image: evans2jiang/interview-web:latest
     restart: unless-stopped
     ports:
       - 3000:3000
