@@ -1,0 +1,16 @@
+# 开发环境 Dockerfile 文件，用于构建开发环境镜像
+FROM node:20.15-alpine
+
+WORKDIR /app
+
+# 拷贝安装依赖文件
+COPY package.json package-lock.json  ./
+RUN npm install
+
+# 拷贝代码文件
+COPY public ./public
+COPY src ./src
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

@@ -1,0 +1,53 @@
+# 用于构建 生产环境的 Docker 镜像并推送到 Docker Hub
+# 目前仅支持: 手动输入 `image tag` 的方式构建 Docker 镜像
+
+name: build image and push to docker hub
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag for the Docker image'
+        required: true
+        default: 'latest'
+  # 暂不支持自动构建（因为没有进行分支管理）
+  # push:
+  #   paths:
+  #     - 'interview/poetry.lock'
+  
+
+jobs:
+  deploy:
+    name: build image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: pull code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/interview-backend
+
+      - name: Build and push Docker image
+        env:
+          IMAGE_TAG: ${{ inputs.tag }}
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: ./interview/
+          file: ./interview/Dockerfiles/Dockerfile-pro-action
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/interview-backend:${{ env.IMAGE_TAG }}
+          # 用于为 Docker 镜像添加元数据，例如作者、版本、描述等
+          labels: ${{ steps.meta.outputs.labels }}

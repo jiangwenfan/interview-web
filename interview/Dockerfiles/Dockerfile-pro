@@ -1,0 +1,32 @@
+# 生产环境 Dockerfile 文件，用于构建开发环境镜像
+FROM node:20.15-alpine AS build
+
+WORKDIR /app
+
+# 拷贝安装依赖文件
+COPY package.json package-lock.json  ./
+RUN npm install --production --silent
+
+# 拷贝代码文件
+COPY public ./public
+COPY src ./src
+
+# 打包构建
+RUN npm run build
+
+
+# 第二阶段，构建生产环境镜像
+FROM nginx:1.26.1-alpine
+
+# 创建默认配置并且没有附加组的 appuser 用户
+# RUN adduser -D -g '' appuser && chown -R appuser /usr/share/nginx/html
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# USER appuser
+
+EXPOSE 3000
+
+CMD ["nginx", "-g", "daemon off;"]

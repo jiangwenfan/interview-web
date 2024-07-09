@@ -1,15 +1,16 @@
-version: '3.4'
+name: interview
 
 services:
   interview:
-    image: interview
     container_name: interview-web
+    image: interview:latest
     build:
       context: .
-      dockerfile: ./Dockerfiles/Dockerfile
-    environment:
-      NODE_ENV: development
+      # dockerfile: ./Dockerfiles/Dockerfile-dev
+      dockerfile: ./Dockerfiles/Dockerfile-pro
+    restart: unless-stopped
+    volumes:
+      - ./public:/app/public
+      - ./src:/app/src
     ports:
       - 3000:3000
-      # - 9229:9229
-      # command: ["node", "--inspect=0.0.0.0:9229", "index.js"]

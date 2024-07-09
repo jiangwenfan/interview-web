@@ -1,12 +1,10 @@
-version: '3.4'
+name: interview
 
 services:
   interview:
+    container_name: interview-web
     # 替换为真实的生产环境镜像和tag
     image: interview
-    container_name: interview-web
     restart: unless-stopped
-    environment:
-      NODE_ENV: production
     ports:
       - 3000:3000
