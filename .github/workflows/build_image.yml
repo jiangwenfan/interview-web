@@ -38,16 +38,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/interview-backend
+          images: ${{ secrets.DOCKER_USERNAME }}/interview-web
 
       - name: Build and push Docker image
         env:
           IMAGE_TAG: ${{ inputs.tag }}
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: ./interview/
-          file: ./interview/Dockerfiles/Dockerfile-pro-action
+          context: .
+          file: ./Dockerfiles/Dockerfile-pro-action
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/interview-backend:${{ env.IMAGE_TAG }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/interview-web:${{ env.IMAGE_TAG }}
           # 用于为 Docker 镜像添加元数据，例如作者、版本、描述等
           labels: ${{ steps.meta.outputs.labels }}

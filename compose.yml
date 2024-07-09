@@ -6,8 +6,7 @@ services:
     image: interview:latest
     build:
       context: .
-      # dockerfile: ./Dockerfiles/Dockerfile-dev
-      dockerfile: ./Dockerfiles/Dockerfile-pro
+      dockerfile: ./Dockerfiles/Dockerfile-dev
     restart: unless-stopped
     volumes:
       - ./public:/app/public
