@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu, } from 'antd';
-
+import { InfoCircleOutlined, LockOutlined } from '@ant-design/icons';
 import examLogo from '../../../assets/test.webp';
 import PubSub from 'pubsub-js';
 import menuItems from '../config.js'
@@ -19,6 +19,17 @@ export default class HeaderInfo extends React.Component {
     handleClick = (e) => {
         let item_key = e.key;
         console.log('点击了菜单项:', item_key);
+
+        // switch (item_key) {
+        //     case 'userInfo':
+        //         item_key = 'home';
+
+        //         break;
+        //     default:
+        //         item_key = 'home';
+        //         break;
+        // }
+
         PubSub.publish('menu-item-click', item_key);
     }
 
@@ -35,6 +46,7 @@ export default class HeaderInfo extends React.Component {
             }}>
                 <img src={examLogo} alt="Exam Logo" width={40} />
             </div>
+
             <Menu
                 theme="dark"
                 mode="horizontal"
