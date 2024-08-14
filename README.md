@@ -1,6 +1,10 @@
 # interview-web
 interview项目的`web端`和`后台管理`
 
+## 工具
+- 格式化工具： `prettier`
+- 语法检查工具: `eslint`
+  
 
 > Getting Started with Create React App
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
