@@ -1,0 +1,17 @@
+.scale-text {
+    display: inline-block;
+    animation: scaleDown 2s forwards;
+    /* 2秒钟完成缩放动画 */
+}
+
+@keyframes scaleDown {
+    0% {
+        font-size: 70px;
+        /* 起始大小 */
+    }
+
+    100% {
+        font-size: 13px;
+        /* 结束大小 */
+    }
+}
